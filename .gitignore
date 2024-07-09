@@ -1,6 +1,6 @@
 .DS_Store
 node_modules
-dist/types/*
+dist
 
 # local env files
 .env.local
@@ -23,16 +23,4 @@ yarn-error.log*
 
 # Lock files
 package-lock.json
-pnpm-lock.yaml
-
-#client
-/client/dist-electron
-/client/dist
-/client/release
-
-# docs
-/docs/.vitepress/cache/
-/docs/.vitepress/dist/
-
-# config
-examples/cherry-markdown-publish/src/common/config/*.yaml
+yarn-lock.yaml

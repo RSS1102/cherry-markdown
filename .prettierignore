@@ -1,5 +1,7 @@
 # build/**
-dist/**
+packages/**/dist/**
 node_modules/**
-src/libs/*.js
-examples/markdown/**
+packages/**/node_modules/**
+
+packages/**src/libs/*.js
+packages/**/examples/markdown/**
