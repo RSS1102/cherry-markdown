@@ -15,19 +15,20 @@ jobs:
       # 检出仓库代码
       - name: Checkout repository
         uses: actions/checkout@v4
-      
+
+         # 获取PR合并后的SHA
+      - name: Get merge commit SHA
+        run: echo "MERGE_COMMIT_SHA=${{ github.event.pull_request.merge_commit_sha }}" >> $GITHUB_ENV
+
       # 根据commit id 修改package.json中的版本号
       - name: Get current package version
         id: version
         run: |
-          DATE=$(date "+%Y%m%d")
-          echo "version=$(node -p "require('./lib/package.json').version")-nightly.$DATE">> "$GITHUB_ENV"
+          echo "version=$(node -p "require('./lib/package.json').version")-dev.$MERGE_COMMIT_SHA">> "$GITHUB_ENV"
 
       - name: Change package name
         run: |
-          cd cli/build/config/output/
-          jq '.name="shuimo-ui-nightly"' package.json > temp.json && mv temp.json package.json
-
+          jq '.name="@cherry-markdown/preview-dev"' package.json > temp.json && mv temp.json package.json
 
       - name: Install Node.js
         uses: actions/setup-node@v4
@@ -36,12 +37,11 @@ jobs:
 
       - name: yarn install
         run: npm i -g yarn && yarn install
-      
-      - name: build 
+
+      - name: build
         run: yarn build
 
       - name: npm publish
         run: npm publish
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
- 
