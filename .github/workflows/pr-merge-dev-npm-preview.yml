@@ -23,10 +23,11 @@ jobs:
         run: echo "MERGE_COMMIT_SHA=${{ github.event.pull_request.merge_commit_sha }}" >> $GITHUB_ENV
 
       # 根据commit id 修改package.json中的版本号和名称
+      # jq '.name="@cherry-markdown/preview-dev"' package.json > temp.json && mv temp.json package.json
       - name: Update package version and name
         run: |
           echo "version=$(node -p \"require('package.json').version\")-dev.$MERGE_COMMIT_SHA" >> "$GITHUB_ENV" && \
-          jq '.name="@cherry-markdown/preview-dev"' package.json > temp.json && mv temp.json package.json
+          jq '.name="test-cherry-markdown"' package.json > temp.json && mv temp.json package.json
 
       - name: Install Node.js
         uses: actions/setup-node@v4
