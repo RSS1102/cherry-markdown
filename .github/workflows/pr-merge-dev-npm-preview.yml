@@ -26,9 +26,13 @@ jobs:
       # jq '.name="@cherry-markdown/preview-dev"' package.json > temp.json && mv temp.json package.json
       - name: Update package version and name
         run: |
-          echo "version=$(node -p \"require('package.json').version\")-dev.$MERGE_COMMIT_SHA" >> "$GITHUB_ENV" && \
+          if [ -f package.json ]; then
+          echo "version=$(node -p \"require('./package.json').version\")-dev.$MERGE_COMMIT_SHA" >> "$GITHUB_ENV" && \
           jq '.name="test-cherry-markdown"' package.json > temp.json && mv temp.json package.json
-
+             else
+            echo "package.json 文件不存在"
+          fi
+          
       - name: Install Node.js
         uses: actions/setup-node@v4
         with:
