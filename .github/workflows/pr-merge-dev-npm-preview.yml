@@ -1,4 +1,4 @@
-name: PR Closed Or Merge
+name: PR Merge Dev NPM Preview
 
 on:
   pull_request_target:
@@ -32,7 +32,7 @@ jobs:
              else
             echo "package.json 文件不存在"
           fi
-          
+
       - name: Install Node.js
         uses: actions/setup-node@v4
         with:
