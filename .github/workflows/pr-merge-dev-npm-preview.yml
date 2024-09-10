@@ -7,27 +7,25 @@ on:
 
 jobs:
   remove_assets:
-    # 不需要在fork仓库的pr中运行
-    if: github.repository == 'Tencent/cherry-markdown' && github.event.pull_request.merged == true
+    # 不需要在fork仓库的pr中运行, 仅当pr合并时运行
+    # if: github.repository == 'Tencent/cherry-markdown' && github.event.pull_request.merged == true
+    if: github.event.pull_request.merged == true
     runs-on: ubuntu-latest
 
     steps:
       # 检出仓库代码
       - name: Checkout repository
-        uses: actions/checkout@v4
+        uses:
+          actions/checkout@v4
 
-         # 获取PR合并后的SHA
+          # 获取PR合并后的SHA
       - name: Get merge commit SHA
         run: echo "MERGE_COMMIT_SHA=${{ github.event.pull_request.merge_commit_sha }}" >> $GITHUB_ENV
 
-      # 根据commit id 修改package.json中的版本号
-      - name: Get current package version
-        id: version
+      # 根据commit id 修改package.json中的版本号和名称
+      - name: Update package version and name
         run: |
-          echo "version=$(node -p "require('./lib/package.json').version")-dev.$MERGE_COMMIT_SHA">> "$GITHUB_ENV"
-
-      - name: Change package name
-        run: |
+          echo "version=$(node -p \"require('package.json').version\")-dev.$MERGE_COMMIT_SHA" >> "$GITHUB_ENV" && \
           jq '.name="@cherry-markdown/preview-dev"' package.json > temp.json && mv temp.json package.json
 
       - name: Install Node.js
