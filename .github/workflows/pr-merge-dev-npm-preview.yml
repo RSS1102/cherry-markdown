@@ -59,10 +59,10 @@ jobs:
              echo "PACKAGE_NAME=$package_name" >> "$GITHUB_ENV"
 
              # 打印当前版本号
-              echo "Current version: $VERSION"
+              echo "Current version: $PACKAGE_VERSION"
 
             # 修改 package.json 中的 name 和 version，并检查 scripts 中是否存在 publish 属性，如果存在则移除
-              jq --arg package_name "$PACKAGE_NAME" --arg package_version "$PACKAGE_VERSION" '
+              jq --arg package_name "$package_name" --arg package_version "$VERSION" '
                   .name=$package_name |
                   .version=$package_version |
                   if .scripts.publish then del(.scripts.publish) else . end
