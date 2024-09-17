@@ -1,7 +1,7 @@
 name: PR Merge Dev NPM Preview
 
 # task:
-# 1. 仅在主仓库中运行
+# 1. 1仅在主仓库中运行
 # 2. 仅在pr合并时运行 (done)
 # 3. 仅在pr合并到dev分支时运行
 # 4. 当pr合并时，获取pr合并后的commit id (done)
@@ -133,9 +133,9 @@ jobs:
        
                   const comment = `谢谢, 这个问题已经被修复,请安装安装测试版体验:
                  \`\`\`shell
-                 npm install @cherry-markdown/preview-dev@${process.env.package_version}
+                 npm install ${process.env.PACKAGE_NAME}@${process.env.package_version}
                  \`\`\`
-                 [查看发布版本](https://www.npmjs.com/package/${process.env.package_name}/v/${process.env.PACKAGE_VERSION}),
+                 [查看发布版本](https://www.npmjs.com/package/${process.env.PACKAGE_NAME}/v/${process.env.PACKAGE_VERSION}),
                 请注意这是一个开发版本,请谨慎使用,不承担生产版本的责任`;
 
                 // 发布评论到issue
