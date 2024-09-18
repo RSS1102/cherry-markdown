@@ -116,7 +116,7 @@ jobs:
            retries: 3
            retry-exempt-status-codes: 400,401
            script: |
-                let issue_array = [];
+                let issue_array =[context.issue.number];
 
                 // 添加issue到数组并去重
                 const addIssueToArray = (newIssues) => {
@@ -140,12 +140,13 @@ jobs:
 
                 // 发布评论到issue
                  const createComment= async (issueNumbers) => {
-                issueNumbers.forEach(async (issueNumber) => {
-                await github.rest.issues.createComment({
-                owner: context.repo.owner,
-                repo: context.repo.repo,
-                issue_number: issueNumber,
-                body: comment
+                    if(typeof value === 'number' && !isNaN(value)) return;
+                       issueNumbers.forEach(async (issueNumber) => {
+                       await github.rest.issues.createComment({
+                       owner: context.repo.owner,
+                       repo: context.repo.repo,
+                       issue_number: issueNumber,
+                       body: comment
                     });
                   });
                 };
@@ -155,7 +156,7 @@ jobs:
                 await github.rest.pulls.get({
                       owner:context.repo.owner,
                       repo: context.repo.repo,
-                     pull_number: context.issue.number
+                      pull_number: context.issue.number
                    });
                 const pullCommitsIssueTitleNumbers = getIssueRegex(pullCommits.title);
                       addIssueToArray(pullCommitsIssueTitleNumbers);
