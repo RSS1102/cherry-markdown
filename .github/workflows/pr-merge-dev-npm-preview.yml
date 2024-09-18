@@ -45,7 +45,7 @@ jobs:
           fi
 
       # 根据commit id 修改package.json中的版本号和名称
-      # jq '.name="@cherry-markdown/preview-dev"' package.json > temp.json && mv temp.json package.json
+      # jq '.name="@cherry-markdown/preview-dev"' package.json > temp.json && mv temp.json package.json 
       - name: dev package version and name
         run: |
           if [ -f package.json ]; then
