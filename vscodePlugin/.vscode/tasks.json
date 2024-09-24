@@ -1,5 +1,10 @@
 // See https://go.microsoft.com/fwlink/?LinkId=733558
 // for the documentation about the tasks.json format
+
+// 1. 不需要二次确认直接F5启动 see:https://stackoverflow.com/questions/44242048/how-can-i-prevent-vs-code-from-waiting-for-a-prelaunchtask-to-finish
+// 2. 移除已经被废弃的problemMatcher的属性见
+// https://github.com/Microsoft/vscode-typescript-tslint-plugin
+// tsc-webpack-watch 安装额外的必要安装扩展`vscode-tsl-problem-matcher`仍然错误
 {
 	"version": "2.0.0",
 	"tasks": [
@@ -7,8 +12,23 @@
 			"type": "npm",
 			"script": "watch",
 			"problemMatcher": [
-                "$ts-webpack-watch",
-                "$tslint-webpack-watch"
+				"$eslint-stylish",
+				"$tsc-watch",
+				{
+					"pattern": [
+						{
+							"regexp": ".",
+							"file": 1,
+							"location": 2,
+							"message": 3
+						}
+					],
+					"background": {
+						"activeOnStart": true,
+						"beginsPattern": ".",
+						"endsPattern": ".",
+					}
+				}
 			],
 			"isBackground": true,
 			"presentation": {
@@ -19,15 +39,5 @@
 				"isDefault": true
 			}
 		},
-		{
-			"type": "npm",
-			"script": "test-watch",
-			"problemMatcher": "$tsc-watch",
-			"isBackground": true,
-			"presentation": {
-				"reveal": "never"
-			},
-			"group": "build"
-		}
 	]
 }
