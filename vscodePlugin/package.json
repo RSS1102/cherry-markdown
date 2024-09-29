@@ -30,7 +30,11 @@
     "commands": [
       {
         "command": "cherrymarkdown.preview",
-        "title": "Open Cherry Markdown"
+        "title": "Open In Cherry Markdown"
+      },
+      {
+        "command": "cherrymarkdown.folders.preview",
+        "title": "Open In Cherry Markdown"
       }
     ],
     "menus": {
@@ -38,6 +42,13 @@
         {
           "command": "cherrymarkdown.preview",
           "when": "editorLangId == markdown",
+          "group": "navigation"
+        }
+      ],
+      "explorer/context": [
+        {
+          "command": "cherrymarkdown.folders.preview",
+          "when": "resourceLangId == markdown",
           "group": "navigation"
         }
       ]

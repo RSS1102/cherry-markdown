@@ -443,6 +443,7 @@ window.addEventListener('message', (e) => {
   const { cmd, data } = e.data;
   switch (cmd) {
     case 'editor-change':
+      console.log('editor-change', mdInfo, data.text);
       window.disableEditListener = true;
       cherry.setValue(data.text);
       changeTheme(data.theme);

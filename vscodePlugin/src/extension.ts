@@ -14,15 +14,20 @@ let cherryTheme: string | undefined = vscode.workspace
   .get('theme'); // 缓存主题
 export function activate(context: vscode.ExtensionContext) {
   extensionPath = context.extensionPath;
-  // 注册命令
-  const disposable = vscode.commands.registerCommand(
-    'cherrymarkdown.preview',
-    () => {
-      triggerEditorContentChange(true);
-    },
-  );
 
-  context.subscriptions.push(disposable);
+  // 注册命令md文件预览
+  const previewCommands = vscode.commands.registerCommand(
+    'cherrymarkdown.preview',
+    () => triggerEditorContentChange(true),
+  );
+  context.subscriptions.push(previewCommands);
+
+  // 注册命令文件资源管理器右键md文件预览
+  const foldersPreviewCommands = vscode.commands.registerCommand(
+    'cherrymarkdown.folders.preview',
+    (uri: vscode.Uri) => foldersPreview(uri),
+  );
+  context.subscriptions.push(foldersPreviewCommands);
 
   // 打开文件的时候触发
   vscode.workspace.onDidOpenTextDocument(() => {
@@ -63,6 +68,11 @@ export function activate(context: vscode.ExtensionContext) {
         cmd: 'editor-scroll',
         data: e.visibleRanges[0].start.line,
       });
+  });
+  vscode.window.onDidChangeTextEditorSelection((event) => {
+    console.log('event', event);
+    const editor = event.textEditor;
+    vscode.window.showInformationMessage(`被聚焦的${editor.document.fileName}`);
   });
 }
 
@@ -218,6 +228,40 @@ const triggerEditorContentChange = (focus: boolean = false) => {
       if (cherryUsage === 'active' || focus) {
         initCherryPanel();
       }
+    }
+  }
+};
+
+// todo:将这个函数和上面的getMarkdownFileInfo函数合并
+const getFoldersMarkdown = async (uri: vscode.Uri) => {
+  const document = await vscode.workspace.openTextDocument(uri);
+  const currentTitle = document.fileName.match(/[^\\/]+$/)?.[0];
+  // 为了验证文件唯一性，这里需要将文件名传递给webview
+  console.log('document', document.fileName);
+  targetDocument = { ...targetDocument, document: { ...targetDocument.document, fileName: document.fileName } };
+  const text = document.getText();
+  const theme = cherryTheme
+    ? cherryTheme
+    : vscode.workspace.getConfiguration('cherryMarkdown').get('theme');
+  return {
+    currentTitle: currentTitle ? `预览 ${currentTitle}   by cherry-markdown` : '不支持当前文件 by cherry-markdown',
+    mdInfo: { text, theme },
+  };
+};
+
+// todo:将这个函数和上面的triggerEditorContentChange函数合并
+/**
+ *  文件管理器预览 markdown 文件
+ */
+const foldersPreview = async (uri: vscode.Uri) => {
+  const { mdInfo, currentTitle } = await getFoldersMarkdown(uri);
+  console.log('mdInfo', mdInfo, currentTitle);
+  if (isCherryPanelInit) {
+    cherryPanel.title = currentTitle;
+    cherryPanel.webview.postMessage({ cmd: 'editor-change', data: mdInfo });
+  } else {
+    if (vscode.window.activeTextEditor?.document?.languageId === 'markdown') {
+      initCherryPanel();
     }
   }
 };
