@@ -1,0 +1,61 @@
+name: Release
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  release:
+    name: Release
+    # if: github.repository == 'Tencent/cherry-markdown'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repo
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js 20.x
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20.x
+
+      - name: Install Dependencies
+        run: yarn
+
+      - name: Create Release Pull Request
+        id: changesets
+        uses: changesets/action@v1
+        with:
+          title: "chore: release"
+          commit: "chore: release"
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Publish NPM Packages
+        if: steps.changesets.outputs.hasChangesets == 'false' && contains(steps.changeset.outputs.publishedPackages, 'cherry-markdown-test')
+        run: |
+          yarn build
+          npm publish --access public
+        env:
+          VSCE_PAT: ${{ secrets.NPM_TOKEN }}
+
+      - name: Publish VSCode Extension
+        if: steps.changesets.outputs.hasChangesets == 'false' && contains(steps.changeset.outputs.publishedPackages, 'cherry-markdown-vscode-plugin-test')
+        run: |
+          npm install -g vsce
+          yarn build
+          cd packages/vscodePlugin
+          vsce package
+          vsce publish
+        env:
+          VSCE_PAT: ${{ secrets.VSCE_PAT }}
+
+      - name: Publish Client
+        if: steps.changesets.outputs.hasChangesets == 'false' && contains(steps.changeset.outputs.publishedPackages, '@cherry-markdown/client')
+        run: |
+          # 安装 Rust 环境
+          curl --proto '=https' -sSf https://sh.rustup.rs | sh -s -- -y
+          source $HOME/.cargo/env
+
+          # 构建客户端
+          yarn build:client
