@@ -9,12 +9,12 @@
   "license": "Apache-2.0",
   "private": true,
   "workspaces": [
-    "packages/*",
-    "examples/*"
+    "packages/*"
   ],
   "scripts": {
     "prepare": "husky",
     "changeset": "npx @changesets/cli",
+    "release": "changeset publish",
     "dev": "yarn workspace cherry-markdown dev",
     "build": "yarn workspace cherry-markdown-test build",
     "postbuild": "tsx scripts/post-build.ts",
