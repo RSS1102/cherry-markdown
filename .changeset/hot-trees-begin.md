@@ -1,5 +1,5 @@
 ---
-'cherry-markdown': patch
+'cherry-markdown-test': patch
 ---
 
 chore: add react demo

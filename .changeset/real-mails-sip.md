@@ -1,7 +1,7 @@
 ---
 'cherry-markdown-test': patch
-'@cherry-markdown/client': patch
 '@cherry-markdown/vscode-plugin': patch
+'@cherry-markdown/client': patch
 ---
 
-feat: add changesets
+feat: add changeset ci
