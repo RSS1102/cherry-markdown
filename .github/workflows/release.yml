@@ -31,7 +31,6 @@ jobs:
       - name: Publish NPM Packages
         if: steps.changesets.outputs.hasChangesets == 'false' && contains(steps.changeset.outputs.publishedPackages, 'cherry-markdown-test')
         run: |
-          cd packages/cherry-markdown
           yarn build
           npm publish --access public
         env:
@@ -41,7 +40,9 @@ jobs:
         if: steps.changesets.outputs.hasChangesets == 'false' && contains(steps.changeset.outputs.publishedPackages, 'cherry-markdown-vscode-plugin-test')
         run: |
           npm install -g vsce
+          yarn build
           cd packages/vscodePlugin
+          vsce package
           vsce publish
         env:
           VSCE_PAT: ${{ secrets.VSCE_PAT }}
@@ -49,5 +50,9 @@ jobs:
       - name: Publish Client
         if: steps.changesets.outputs.hasChangesets == 'false' && contains(steps.changeset.outputs.publishedPackages, '@cherry-markdown/client')
         run: |
-          cd packages/client
-          yarn build
+            # 安装 Rust 环境
+            curl --proto '=https' -sSf https://sh.rustup.rs | sh -s -- -y
+            source $HOME/.cargo/env
+
+            # 构建客户端
+            yarn build:client
