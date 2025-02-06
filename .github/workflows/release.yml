@@ -25,6 +25,10 @@ jobs:
       - name: Create Release Pull Request
         id: changesets
         uses: changesets/action@v1
+        with:
+          version: yarn bump
+          title: "chore: release"
+          commit: "chore: release"
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
@@ -50,9 +54,9 @@ jobs:
       - name: Publish Client
         if: steps.changesets.outputs.hasChangesets == 'false' && contains(steps.changeset.outputs.publishedPackages, '@cherry-markdown/client')
         run: |
-            # 安装 Rust 环境
-            curl --proto '=https' -sSf https://sh.rustup.rs | sh -s -- -y
-            source $HOME/.cargo/env
+          # 安装 Rust 环境
+          curl --proto '=https' -sSf https://sh.rustup.rs | sh -s -- -y
+          source $HOME/.cargo/env
 
-            # 构建客户端
-            yarn build:client
+          # 构建客户端
+          yarn build:client
