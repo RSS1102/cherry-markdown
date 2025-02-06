@@ -29,7 +29,7 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Publish NPM Packages
-        if: steps.changesets.outputs.hasChangesets == 'false' && contains(steps.changeset.outputs.publishedPackages, 'cherry-markdown')
+        if: steps.changesets.outputs.hasChangesets == 'false' && contains(steps.changeset.outputs.publishedPackages, 'cherry-markdown-test')
         run: |
           cd packages/cherry-markdown
           yarn build
@@ -38,7 +38,7 @@ jobs:
           VSCE_PAT: ${{ secrets.NPM_TOKEN }}
 
       - name: Publish VSCode Extension
-        if: steps.changesets.outputs.hasChangesets == 'false' && contains(steps.changeset.outputs.publishedPackages, '@cherry-markdown/vscode-plugin')
+        if: steps.changesets.outputs.hasChangesets == 'false' && contains(steps.changeset.outputs.publishedPackages, 'cherry-markdown-vscode-plugin-test')
         run: |
           npm install -g vsce
           cd packages/vscodePlugin
