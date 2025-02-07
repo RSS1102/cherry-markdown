@@ -26,11 +26,14 @@ jobs:
         id: changesets
         uses: changesets/action@v1
         with:
-          publish: yarn release
+          version: yarn version
           title: "chore: release"
           commit: "chore: release"
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Print output
+        run: echo "Changesets output: ${{ steps.changesets.outputs }}"
 
       - name: Publish NPM Packages
         if: steps.changesets.outputs.hasChangesets == 'false' && contains(steps.changesets.outputs.publishedPackages, 'cherry-markdown-test')
