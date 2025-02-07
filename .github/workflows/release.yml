@@ -8,7 +8,6 @@ on:
 jobs:
   release:
     name: Release
-    # if: github.repository == 'Tencent/cherry-markdown'
     runs-on: ubuntu-latest
     steps:
       - name: Checkout Repo
@@ -32,11 +31,16 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Print output
-        run: echo "Changesets output: ${{ toJson(steps.changesets.outputs) }}"
+      - name: Print changesets outputs
+        run: |
+          echo "hasChangesets: ${{ steps.changesets.outputs.hasChangesets }}"
+          echo "publishedPackages: ${{ steps.changesets.outputs.publishedPackages }}"
+          echo "version: ${{ steps.changesets.outputs.version }}"
+          echo "released: ${{ steps.changesets.outputs.released }}"
+          echo "releasedPackages: ${{ steps.changesets.outputs.releasedPackages }}"
 
-      - name: Publish NPM Packages
-        if: steps.changesets.outputs.hasChangesets == 'false' && contains(steps.changesets.outputs.publishedPackages, 'cherry-markdown-test')
+      - name: Publish
+        if: steps.changesets.outputs.hasChangesets == 'false'
         run: |
           yarn build
           npm publish --access public
@@ -44,7 +48,7 @@ jobs:
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
 
       - name: Publish VSCode Extension
-        if: steps.changesets.outputs.hasChangesets == 'false' && contains(steps.changesets.outputs.publishedPackages, 'cherry-markdown-vscode-plugin-test')
+        if: steps.changesets.outputs.hasChangesets == 'false'
         run: |
           npm install -g vsce
           yarn build
@@ -55,7 +59,7 @@ jobs:
           VSCE_PAT: ${{ secrets.VSCE_PAT }}
 
       - name: Publish Client
-        if: steps.changesets.outputs.hasChangesets == 'false' && contains(steps.changesets.outputs.publishedPackages, '@cherry-markdown/client')
+        if: steps.changesets.outputs.hasChangesets == 'false'
         run: |
           # 安装 Rust 环境
           curl --proto '=https' -sSf https://sh.rustup.rs | sh -s -- -y
