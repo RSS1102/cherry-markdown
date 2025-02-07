@@ -8,7 +8,6 @@ on:
 jobs:
   release:
     name: Release
-    # if: github.repository == 'Tencent/cherry-markdown'
     runs-on: ubuntu-latest
     steps:
       - name: Checkout Repo
@@ -32,8 +31,13 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Print output
-        run: echo "Changesets output: ${{ toJson(steps.changesets.outputs) }}"
+      - name: Print changesets outputs
+        run: |
+          echo "hasChangesets: ${{ steps.changesets.outputs.hasChangesets }}"
+          echo "publishedPackages: ${{ steps.changesets.outputs.publishedPackages }}"
+          echo "version: ${{ steps.changesets.outputs.version }}"
+          echo "released: ${{ steps.changesets.outputs.released }}"
+          echo "releasedPackages: ${{ steps.changesets.outputs.releasedPackages }}"
 
       - name: Publish NPM Packages
         if: steps.changesets.outputs.hasChangesets == 'false' && contains(steps.changesets.outputs.publishedPackages, 'cherry-markdown-test')
