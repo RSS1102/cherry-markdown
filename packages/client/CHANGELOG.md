@@ -1,6 +1,6 @@
-# Change Log
+# @cherry-markdown/client
 
-## 0.0.19
+## 0.1.1
 
 ### Patch Changes
 
@@ -8,10 +8,5 @@
 
 - [#16](https://github.com/RSS1102/cherry-markdown/pull/16) [`da11dd4`](https://github.com/RSS1102/cherry-markdown/commit/da11dd4c2e2b01bb74ef962a9db03bc6b60515ca) Thanks [@RSS1102](https://github.com/RSS1102)! - feat: add changeset ci
 
-All notable changes to the "cherrymarkdown" extension will be documented in this file.
-
-Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how to structure this file.
-
-## [Unreleased]
-
-- Initial release
+- Updated dependencies [[`da11dd4`](https://github.com/RSS1102/cherry-markdown/commit/da11dd4c2e2b01bb74ef962a9db03bc6b60515ca), [`da11dd4`](https://github.com/RSS1102/cherry-markdown/commit/da11dd4c2e2b01bb74ef962a9db03bc6b60515ca), [`da11dd4`](https://github.com/RSS1102/cherry-markdown/commit/da11dd4c2e2b01bb74ef962a9db03bc6b60515ca)]:
+  - cherry-markdown-test@0.8.59
