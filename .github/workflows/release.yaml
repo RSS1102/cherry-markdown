@@ -64,4 +64,4 @@ jobs:
 
       - name: Publish Client
         # if: ${{ contains(steps.changesets.outputs.publishedPackages, '"name":"@cherry-markdown/client"') }}
-        uses: ./.github/actions/build-client-release
+        uses: ./.github/actions/build-client-release/action.yaml
