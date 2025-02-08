@@ -39,9 +39,6 @@ jobs:
           echo "version: ${{ steps.changesets.outputs.version }}"
           echo "released: ${{ steps.changesets.outputs.released }}"
           echo "releasedPackages: ${{ toJson(steps.changesets.outputs.releasedPackages) }}"
-            # 使用 jq 解析 publishedPackages 数组
-          echo "Parsed publishedPackages:"
-          echo '${{ toJson(steps.changesets.outputs.publishedPackages) }}' | jq -r '.[]'
 
       # - name: Publish
       #   if: steps.changesets.outputs.hasChangesets == 'false'
