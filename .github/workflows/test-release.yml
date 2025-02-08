@@ -63,7 +63,7 @@ jobs:
         uses: AButler/upload-release-assets@v3.0
         with:
           files: |
-            packages/client/src-tauri/target/aarch64-apple-darwin/release/bundle/dmg/*.dmg,
+            packages/client/src-tauri/target/aarch64-apple-darwin/release/bundle/dmg/*.dmg
           release-tag: "cherry-markdown-vscode-plugin-test@0.0.19"
           repo-token: ${{ secrets.GITHUB_TOKEN }}
           
@@ -81,8 +81,8 @@ jobs:
         uses: AButler/upload-release-assets@v3.0
         with:
           files: |
-            packages/client/src-tauri/target/release/bundle/deb/*.deb,
-            packages/client/src-tauri/target/release/bundle/rpm/*.rpm,
+            packages/client/src-tauri/target/release/bundle/deb/*.deb;
+            packages/client/src-tauri/target/release/bundle/rpm/*.rpm;
             packages/client/src-tauri/target/release/bundle/appimage/*.AppImage
           release-tag: "cherry-markdown-vscode-plugin-test@0.0.19"
           repo-token: ${{ secrets.GITHUB_TOKEN }}
@@ -92,7 +92,7 @@ jobs:
         uses: AButler/upload-release-assets@v3.0
         with:
           files: |
-            packages/client/src-tauri/target/release/bundle/msi/*_en-US.msi,
+            packages/client/src-tauri/target/release/bundle/msi/*_en-US.msi;
             packages/client/src-tauri/target/release/bundle/nsis/*-setup.exe
           release-tag: "cherry-markdown-vscode-plugin-test@0.0.19"
           repo-token: ${{ secrets.GITHUB_TOKEN }}
