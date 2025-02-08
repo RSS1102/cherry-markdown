@@ -56,12 +56,12 @@ jobs:
 
       - name: Build Tauri
         run: |
-          yarn install
+          yarn --network-timeout 100000
           yarn build:client ${{ matrix.args }}
 
       - name: Upload Release Asset
         uses: AButler/upload-release-assets@v3.0
         with:
-          files: "packages/client/src-tauri/target/release/bundle/**"
+          files: "packages/client/src-tauri/target/**/release/bundle/**/*"
           release-tag: "cherry-markdown-vscode-plugin-test@0.0.19"
           repo-token: ${{ secrets.GITHUB_TOKEN }}
