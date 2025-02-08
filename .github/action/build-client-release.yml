@@ -1,9 +1,7 @@
-name: "publish"
+name: "Build Client Release"
 
 on:
-  push:
-    branches:
-      - main
+  workflow_call:
 
 jobs:
   publish-tauri:
