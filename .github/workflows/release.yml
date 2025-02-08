@@ -29,6 +29,7 @@ jobs:
           version: yarn version
           title: "chore: release"
           commit: "chore: release"
+          publish: pnpm changeset tag
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - name: Print changesets outputs
