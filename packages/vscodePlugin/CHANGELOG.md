@@ -1,13 +1,5 @@
 # Change Log
 
-## 0.0.19
-
-### Patch Changes
-
-- [#20](https://github.com/RSS1102/cherry-markdown/pull/20) [`367bd68`](https://github.com/RSS1102/cherry-markdown/commit/367bd6834ad80a29df7c504cdc98948c4e12cec3) Thanks [@RSS1102](https://github.com/RSS1102)! - feat: add changesets
-
-- [#20](https://github.com/RSS1102/cherry-markdown/pull/20) [`367bd68`](https://github.com/RSS1102/cherry-markdown/commit/367bd6834ad80a29df7c504cdc98948c4e12cec3) Thanks [@RSS1102](https://github.com/RSS1102)! - feat: add changeset ci
-
 All notable changes to the "cherrymarkdown" extension will be documented in this file.
 
 Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how to structure this file.
