@@ -58,18 +58,41 @@ jobs:
           yarn --network-timeout 100000
           yarn build:client ${{ matrix.args }}
 
-      - name: Upload Release Asset
+      - name: Upload macOS Release Asset (aarch64-apple-darwin)
+        if: matrix.platform == 'macos-latest' &&  matrix.target == 'aarch64-apple-darwin'
         uses: AButler/upload-release-assets@v3.0
         with:
           files: |
-             packages/client/src-tauri/target/aarch64-apple-darwin/release/bundle/dmg/*.dmg,
-             packages/client/src-tauri/target/x86_64-apple-darwin/release/bundle/dmg/*.dmg,
-             packages/client/src-tauri/target/release/bundle/deb/*.deb,
-             packages/client/src-tauri/target/release/bundle/rpm/*.rpm,
-             packages/client/src-tauri/target/release/bundle/appimage/*.AppImage,
-             packages\client\src-tauri\target\release\bundle\msi\*_en-US.msi,
-             packages\client\src-tauri\target\release\bundle\nsis\*-setup.exe
-
+            packages/client/src-tauri/target/aarch64-apple-darwin/release/bundle/dmg/*.dmg,
           release-tag: "cherry-markdown-vscode-plugin-test@0.0.19"
           repo-token: ${{ secrets.GITHUB_TOKEN }}
-  
+          
+      - name: Upload macOS Release Asset (x86_64-apple-darwin)
+        if: matrix.platform == 'macos-latest' &&  matrix.target == 'x86_64-apple-darwin'
+        uses: AButler/upload-release-assets@v3.0
+        with:
+          files: |
+            packages/client/src-tauri/target/x86_64-apple-darwin/release/bundle/dmg/*.dmg
+          release-tag: "cherry-markdown-vscode-plugin-test@0.0.19"
+          repo-token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Upload Linux Release Asset
+        if: matrix.platform == 'ubuntu-latest'
+        uses: AButler/upload-release-assets@v3.0
+        with:
+          files: |
+            packages/client/src-tauri/target/release/bundle/deb/*.deb,
+            packages/client/src-tauri/target/release/bundle/rpm/*.rpm,
+            packages/client/src-tauri/target/release/bundle/appimage/*.AppImage
+          release-tag: "cherry-markdown-vscode-plugin-test@0.0.19"
+          repo-token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Upload Windows Release Asset
+        if: matrix.platform == 'windows-latest'
+        uses: AButler/upload-release-assets@v3.0
+        with:
+          files: |
+            packages/client/src-tauri/target/release/bundle/msi/*_en-US.msi,
+            packages/client/src-tauri/target/release/bundle/nsis/*-setup.exe
+          release-tag: "cherry-markdown-vscode-plugin-test@0.0.19"
+          repo-token: ${{ secrets.GITHUB_TOKEN }}
