@@ -13,20 +13,25 @@ jobs:
       fail-fast: false
       matrix:
         include:
-          - platform: "macos-latest"
+          - platform: macos-latest
+            target: aarch64-apple-darwin
             args: "--target aarch64-apple-darwin"
-          - platform: "macos-latest"
+          - platform: macos-latest
+            target: x86_64-apple-darwin
             args: "--target x86_64-apple-darwin"
-          - platform: "ubuntu-latest"
+          - platform: ubuntu-latest
+            target: ""
             args: ""
-          - platform: "windows-latest"
+          - platform: windows-latest
+            target: ""
             args: ""
 
     runs-on: ${{ matrix.platform }}
+
     steps:
       - uses: actions/checkout@v4
 
-      - name: setup node
+      - name: Setup Node
         uses: actions/setup-node@v4
         with:
           node-version: lts/*
@@ -34,9 +39,14 @@ jobs:
       - name: Setup Rust
         uses: actions-rust-lang/setup-rust-toolchain@v1
         with:
+          # This ensures the target is installed if it's not empty.
           target: ${{ matrix.target }}
           profile: minimal
           toolchain: stable
+
+      - name: Ensure x86_64 Target is Installed
+        if: matrix.target == 'x86_64-apple-darwin'
+        run: rustup target add x86_64-apple-darwin
 
       - name: Install Linux Dependencies
         if: matrix.platform == 'ubuntu-latest'
@@ -44,14 +54,14 @@ jobs:
           sudo apt-get update
           sudo apt-get install -y libwebkit2gtk-4.1-dev libappindicator3-dev librsvg2-dev patchelf
 
-      - name:  build tauri
+      - name: Build Tauri
         run: |
           yarn install
           yarn build:client ${{ matrix.args }}
 
-      - name: upload release asset
+      - name: Upload Release Asset
         uses: AButler/upload-release-assets@v3.0
         with:
           files: "packages/client/src-tauri/target/release/bundle/**"
-          release-id: 'cherry-markdown-vscode-plugin-test@0.0.19'
+          release-id: "cherry-markdown-vscode-plugin-test%400.0.19"
           repo-token: ${{ secrets.GITHUB_TOKEN }}
