@@ -33,11 +33,11 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - name: Print changesets outputs
         run: |
-             echo "hasChangesets: ${{ steps.changesets.outputs.hasChangesets }}"
-             echo "publishedPackages: ${{ steps.changesets.outputs.publishedPackages }}"
-             echo "version: ${{ steps.changesets.outputs.version }}"
-             echo "released: ${{ steps.changesets.outputs.released }}"
-             echo "releasedPackages: ${{ steps.changesets.outputs.releasedPackages }}"
+          echo "hasChangesets: ${{ steps.changesets.outputs.hasChangesets }}"
+          echo "publishedPackages: ${{ toJson(steps.changesets.outputs.publishedPackages) }}"
+          echo "version: ${{ steps.changesets.outputs.version }}"
+          echo "released: ${{ steps.changesets.outputs.released }}"
+          echo "releasedPackages: ${{ toJson(steps.changesets.outputs.releasedPackages) }}"
 
       # - name: Publish
       #   if: steps.changesets.outputs.hasChangesets == 'false'
