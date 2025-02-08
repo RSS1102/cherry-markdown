@@ -63,5 +63,5 @@ jobs:
         uses: AButler/upload-release-assets@v3.0
         with:
           files: "packages/client/src-tauri/target/release/bundle/**"
-          release-id: "cherry-markdown-vscode-plugin-test%400.0.19"
+          release-tag: "cherry-markdown-vscode-plugin-test@0.0.19"
           repo-token: ${{ secrets.GITHUB_TOKEN }}
