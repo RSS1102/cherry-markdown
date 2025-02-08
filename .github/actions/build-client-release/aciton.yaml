@@ -28,6 +28,8 @@ jobs:
 
     steps:
       - uses: actions/checkout@v4
+        with:
+          repository: RSS1102/cherry-markdown
 
       - name: Setup Node
         uses: actions/setup-node@v4
