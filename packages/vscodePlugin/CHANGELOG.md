@@ -1,15 +1,5 @@
 # Change Log
 
-## 0.0.20
-
-### Patch Changes
-
-- [#42](https://github.com/RSS1102/cherry-markdown/pull/42) [`d879d6c`](https://github.com/RSS1102/cherry-markdown/commit/d879d6cb894c5cacf196caab6721d6eb834be217) Thanks [@RSS1102](https://github.com/RSS1102)! - chore: 尝试发布
-
-- [#42](https://github.com/RSS1102/cherry-markdown/pull/42) [`d879d6c`](https://github.com/RSS1102/cherry-markdown/commit/d879d6cb894c5cacf196caab6721d6eb834be217) Thanks [@RSS1102](https://github.com/RSS1102)! - chore: 发布
-
-- [#42](https://github.com/RSS1102/cherry-markdown/pull/42) [`d879d6c`](https://github.com/RSS1102/cherry-markdown/commit/d879d6cb894c5cacf196caab6721d6eb834be217) Thanks [@RSS1102](https://github.com/RSS1102)! - chore: 发布
-
 ## 0.0.19
 
 ### Patch Changes
