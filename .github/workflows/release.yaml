@@ -10,6 +10,7 @@ jobs:
     runs-on: ubuntu-latest
     outputs:
       publishedPackages: ${{ steps.changesets.outputs.publishedPackages }}
+      publishedClientVersion: ${{ steps.extract_client_version.outputs.client_version }}
     steps:
       - name: Checkout Repo
         uses: actions/checkout@v4
@@ -34,11 +35,16 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Debug publishedPackages
+      - name: Debug publishedPackages Client_version
+        id: extract_client_version
         run: |
           echo "publishedPackages: ${{ steps.changesets.outputs.publishedPackages }}"
+          client_version=$(echo '${{ steps.changesets.outputs.publishedPackages }}' | jq -r '.[] | select(.name=="@cherry-markdown/client") | .version')
+          echo "client_version=$client_version" >> $GITHUB_OUTPUT
 
   build-client-release:
     needs: release
     if: ${{ contains(needs.release.outputs.publishedPackages, '"name":"@cherry-markdown/client"') }}
     uses: ./.github/workflows/build-client-release.yaml
+    with:
+        client_version: ${{ needs.release.outputs.publishedClientVersion }}
