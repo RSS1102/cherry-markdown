@@ -96,5 +96,5 @@ jobs:
           files: |
             packages/client/src-tauri/target/release/bundle/msi/*_en-US.msi;
             packages/client/src-tauri/target/release/bundle/nsis/*-setup.exe
-          release-tag: "cherry-markdown/client@${{ inputs.client_version }}"
+          release-tag: "@cherry-markdown/client@${{ inputs.client_version }}"
           repo-token: ${{ secrets.GITHUB_TOKEN }}
