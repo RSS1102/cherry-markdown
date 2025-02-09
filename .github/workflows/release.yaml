@@ -27,7 +27,7 @@ jobs:
         id: changesets
         uses: changesets/action@v1
         with:
-          version: yarn version
+          version: yarn versions
           title: "chore: release"
           commit: "chore: release"
           publish: yarn changeset tag
