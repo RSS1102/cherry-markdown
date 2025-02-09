@@ -1,5 +1,18 @@
 # @cherry-markdown/client
 
+## 0.1.2
+
+### Patch Changes
+
+- [#40](https://github.com/RSS1102/cherry-markdown/pull/40) [`4a09618`](https://github.com/RSS1102/cherry-markdown/commit/4a096182ad1ce738a94c178dd57a88dfcd4c72f1) Thanks [@RSS1102](https://github.com/RSS1102)! - chore: 尝试发布
+
+- [#40](https://github.com/RSS1102/cherry-markdown/pull/40) [`4a09618`](https://github.com/RSS1102/cherry-markdown/commit/4a096182ad1ce738a94c178dd57a88dfcd4c72f1) Thanks [@RSS1102](https://github.com/RSS1102)! - chore: 发布
+
+- [#40](https://github.com/RSS1102/cherry-markdown/pull/40) [`4a09618`](https://github.com/RSS1102/cherry-markdown/commit/4a096182ad1ce738a94c178dd57a88dfcd4c72f1) Thanks [@RSS1102](https://github.com/RSS1102)! - chore: 发布
+
+- Updated dependencies [[`4a09618`](https://github.com/RSS1102/cherry-markdown/commit/4a096182ad1ce738a94c178dd57a88dfcd4c72f1), [`4a09618`](https://github.com/RSS1102/cherry-markdown/commit/4a096182ad1ce738a94c178dd57a88dfcd4c72f1), [`4a09618`](https://github.com/RSS1102/cherry-markdown/commit/4a096182ad1ce738a94c178dd57a88dfcd4c72f1)]:
+  - cherry-markdown-test@0.8.60
+
 ## 0.1.1
 
 ### Patch Changes
