@@ -41,4 +41,4 @@ jobs:
   build-client-release:
     needs: release
     if: ${{ contains(needs.release.outputs.publishedPackages, '"name":"@cherry-markdown/client"') }}
-    uses: ./.github/workflows/build-client-release.yaml@main
+    uses: ./.github/workflows/build-client-release.yaml
