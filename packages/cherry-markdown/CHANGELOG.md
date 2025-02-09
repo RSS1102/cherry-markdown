@@ -1,5 +1,15 @@
 # Changelog
 
+## 0.8.60
+
+### Patch Changes
+
+- [#38](https://github.com/RSS1102/cherry-markdown/pull/38) [`8aec82b`](https://github.com/RSS1102/cherry-markdown/commit/8aec82bde1c77827f0b2bc4a558399f701b5fdac) Thanks [@RSS1102](https://github.com/RSS1102)! - chore: 尝试发布
+
+- [#38](https://github.com/RSS1102/cherry-markdown/pull/38) [`8aec82b`](https://github.com/RSS1102/cherry-markdown/commit/8aec82bde1c77827f0b2bc4a558399f701b5fdac) Thanks [@RSS1102](https://github.com/RSS1102)! - chore: 发布
+
+- [#38](https://github.com/RSS1102/cherry-markdown/pull/38) [`8aec82b`](https://github.com/RSS1102/cherry-markdown/commit/8aec82bde1c77827f0b2bc4a558399f701b5fdac) Thanks [@RSS1102](https://github.com/RSS1102)! - chore: 发布
+
 ## 0.8.59
 
 ### Patch Changes
