@@ -36,7 +36,7 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Publish
-        if: ${{ contains(steps.changesets.outputs.publishedPackages, '"name":"cherry-markdown"') }}
+        if: ${{ contains(steps.changesets.outputs.publishedPackages, '"name":"cherry-markdown-test"') }}
         run: |
             yarn build
             cd packages/cherry-markdown
