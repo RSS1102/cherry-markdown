@@ -66,7 +66,7 @@ jobs:
         with:
           files: |
             packages/client/src-tauri/target/aarch64-apple-darwin/release/bundle/dmg/*.dmg
-          release-tag: "cherry-markdown/client@${{ inputs.client_version }}"
+          release-tag: "@cherry-markdown/client@${{ inputs.client_version }}"
           repo-token: ${{ secrets.GITHUB_TOKEN }}
           
       - name: Upload macOS Release Asset (x86_64-apple-darwin)
@@ -75,7 +75,7 @@ jobs:
         with:
           files: |
             packages/client/src-tauri/target/x86_64-apple-darwin/release/bundle/dmg/*.dmg
-          release-tag: "cherry-markdown/client@${{ inputs.client_version }}"
+          release-tag: "@cherry-markdown/client@${{ inputs.client_version }}"
           repo-token: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Upload Linux Release Asset
@@ -86,7 +86,7 @@ jobs:
             packages/client/src-tauri/target/release/bundle/deb/*.deb;
             packages/client/src-tauri/target/release/bundle/rpm/*.rpm;
             packages/client/src-tauri/target/release/bundle/appimage/*.AppImage
-          release-tag: "cherry-markdown/client@${{ inputs.client_version }}"
+          release-tag: "@cherry-markdown/client@${{ inputs.client_version }}"
           repo-token: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Upload Windows Release Asset
