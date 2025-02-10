@@ -1,5 +1,11 @@
 # Change Log
 
+## 0.0.22
+
+### Patch Changes
+
+- [`bb2d88f`](https://github.com/RSS1102/cherry-markdown/commit/bb2d88f98bcd549d3ffa37045876b0c313ad381c) Thanks [@RSS1102](https://github.com/RSS1102)! - chore: 新版
+
 ## 0.0.21
 
 ### Patch Changes

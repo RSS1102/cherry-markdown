@@ -1,5 +1,14 @@
 # @cherry-markdown/client
 
+## 0.1.4
+
+### Patch Changes
+
+- [`bb2d88f`](https://github.com/RSS1102/cherry-markdown/commit/bb2d88f98bcd549d3ffa37045876b0c313ad381c) Thanks [@RSS1102](https://github.com/RSS1102)! - chore: 新版
+
+- Updated dependencies [[`bb2d88f`](https://github.com/RSS1102/cherry-markdown/commit/bb2d88f98bcd549d3ffa37045876b0c313ad381c)]:
+  - cherry-markdown-test@0.8.62
+
 ## 0.1.3
 
 ### Patch Changes
