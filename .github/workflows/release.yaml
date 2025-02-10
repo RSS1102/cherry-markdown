@@ -56,10 +56,11 @@ jobs:
         env:
             VSCE_PAT: ${{ secrets.VSCE_PAT }}
 
-      - name: Debug publishedPackages Client_version
+      - name: client_version Output
         id: extract_client_version
         run: |
           echo "publishedPackages: ${{ steps.changesets.outputs.publishedPackages }}"
+
           client_version=$(echo '${{ steps.changesets.outputs.publishedPackages }}' | jq -r '.[] | select(.name=="@cherry-markdown/client") | .version')
           echo "client_version=$client_version" >> $GITHUB_OUTPUT
 
