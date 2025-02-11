@@ -1,5 +1,14 @@
 # @cherry-markdown/client
 
+## 0.1.5
+
+### Patch Changes
+
+- [`fb43a6d`](https://github.com/RSS1102/cherry-markdown/commit/fb43a6d46b3fcc761aabef0234276e4c525637f4) Thanks [@RSS1102](https://github.com/RSS1102)! - chore: 测试发布
+
+- Updated dependencies [[`fb43a6d`](https://github.com/RSS1102/cherry-markdown/commit/fb43a6d46b3fcc761aabef0234276e4c525637f4)]:
+  - cherry-markdown-test@0.8.63
+
 ## 0.1.4
 
 ### Patch Changes
