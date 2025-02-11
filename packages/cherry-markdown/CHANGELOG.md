@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.8.63
+
+### Patch Changes
+
+- [`fb43a6d`](https://github.com/RSS1102/cherry-markdown/commit/fb43a6d46b3fcc761aabef0234276e4c525637f4) Thanks [@RSS1102](https://github.com/RSS1102)! - chore: 测试发布
+
 ## 0.8.62
 
 ### Patch Changes
