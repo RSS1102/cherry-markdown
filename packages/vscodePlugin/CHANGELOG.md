@@ -1,5 +1,11 @@
 # Change Log
 
+## 0.0.24
+
+### Patch Changes
+
+- [`b9d9e60`](https://github.com/RSS1102/cherry-markdown/commit/b9d9e6043a9766e1ba5dac11589bbf354029c6d6) Thanks [@RSS1102](https://github.com/RSS1102)! - chore: statement test
+
 ## 0.0.23
 
 ### Patch Changes
