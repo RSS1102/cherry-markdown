@@ -30,8 +30,8 @@ jobs:
         run: |
           cd packages/vscodePlugin
           jq '.name="cherry-markdown"' package.json > temp.json && mv temp.json package.json
-          npm install -g vsce
-          vsce package
+          set npm_config_workspaces=false
+          vsce package --no-yarn
        # vsce publish
         env:
           VSCE_PAT: ${{ secrets.VSCE_PAT }}
