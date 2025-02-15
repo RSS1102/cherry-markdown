@@ -41,7 +41,7 @@ jobs:
         if: ${{ contains(steps.changesets.outputs.publishedPackages, '"name":"cherry-markdown"') }}
         run: |
           cd packages/cherry-markdown
-          npm publish --access public
+        # npm publish --access public
         env:
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
@@ -55,7 +55,7 @@ jobs:
           yarn
           jq '.name="cherry-markdown"' package.json > temp.json && mv temp.json package.json
           vsce package
-          vsce publish
+        # vsce publish
         env:
           VSCE_PAT: ${{ secrets.VSCE_PAT }}
 
