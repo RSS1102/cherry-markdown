@@ -86,5 +86,5 @@ jobs:
   review:
     needs: build
     permissions: write-all
-    uses: ./.github/workflows/pr-reviewer-COS.yml
+    uses: ./.github/workflows/pr-preview-COS.yml
     secrets: inherit
