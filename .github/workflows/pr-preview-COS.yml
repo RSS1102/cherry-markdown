@@ -1,4 +1,4 @@
-name: PR Reviewer
+name: PR Preview COS
 
 on: workflow_call
 
