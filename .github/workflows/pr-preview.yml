@@ -36,7 +36,7 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v4
         if: ${{ env.GIT_DIFF_FILES }}
         with:
           repository: ${{ github.repository }}
@@ -51,14 +51,14 @@ jobs:
             cp "$file" "base-repo/$file"
           done
 
-      - name: Use Node.js 16.x
+      - name: Use Node.js 18.x
         uses: actions/setup-node@v2
         with:
-          node-version: 16.x
+          node-version: 18.x
           cache: "yarn"
 
       - name: Install dependencies
-        run: yarn install
+        run: yarn
 
       - name: Lint Changed Files
         if: ${{ env.LINT_FILES }}
@@ -86,5 +86,5 @@ jobs:
   review:
     needs: build
     permissions: write-all
-    uses: ./.github/workflows/pr-reviewer-COS.yml
+    uses: ./.github/workflows/pr-preview-COS.yml
     secrets: inherit
